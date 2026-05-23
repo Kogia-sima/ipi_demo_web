@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "IPI Demo — 間接プロンプトインジェクション体験サイト",
+  title: "間接プロンプトインジェクション体験デモ",
   description:
-    "AIエージェントを狙う「間接プロンプトインジェクション」を、ブラウザだけで安全に体験できる教育用Webサイト。",
+    "AIエージェントを狙う「間接プロンプトインジェクション」を、安全に体験できる教育用Webサイト。",
   icons: {
     icon: "/favicon.ico",
   },

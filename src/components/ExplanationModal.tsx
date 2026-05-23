@@ -30,10 +30,6 @@ export function ExplanationModal({ open, scenario, onClose }: Props) {
         {scenario && (
           <div className="flex max-h-[85vh] flex-col overflow-hidden">
             <DialogHeader className="border-b border-border/60 bg-linear-to-br from-indigo-50 via-white to-violet-50 px-6 py-5">
-              <span className="inline-flex items-center gap-1.5 self-start rounded-full bg-indigo-500/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-indigo-600">
-                <ShieldCheck className="size-3.5" aria-hidden="true" />
-                解説 · {scenario.badge}
-              </span>
               <DialogTitle className="text-xl font-semibold tracking-tight">
                 {scenario.title}
               </DialogTitle>
