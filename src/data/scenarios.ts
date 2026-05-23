@@ -119,7 +119,7 @@ const SCENARIO_1: Scenario = {
       action: "応答を送信",
       detail: "ユーザに要約結果を返却しました。",
     },
-    { at: 27500, kind: "complete" },
+    { at: 25500, kind: "complete" },
   ],
 };
 
@@ -206,7 +206,7 @@ const SCENARIO_2: Scenario = {
       action: "応答を送信",
       detail: "ユーザに天気予報を返却しました。",
     },
-    { at: 26000, kind: "complete" },
+    { at: 25000, kind: "complete" },
   ],
 };
 
@@ -292,7 +292,7 @@ const SCENARIO_3: Scenario = {
       action: "応答を送信",
       detail: "ユーザに会議資料を返却しました。",
     },
-    { at: 27500, kind: "complete" },
+    { at: 26500, kind: "complete" },
   ],
 };
 
