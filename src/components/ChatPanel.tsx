@@ -1,8 +1,6 @@
 "use client";
 
-import { Square } from "lucide-react";
 import { useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
 import type { Scenario } from "@/data/scenarios";
 import type { Message, Status } from "@/stores/useScenario";
 import { ChatInputBar } from "./ChatInputBar";
@@ -119,22 +117,7 @@ function ActiveLayout({
       <div className="border-t border-border/60 bg-background/70 p-4 backdrop-blur md:p-5">
         <div className="mx-auto flex w-full max-w-2xl flex-col gap-3">
           {running ? (
-            <div className="flex items-center gap-2">
-              <ChatInputBar
-                className="flex-1"
-                placeholder="AIが応答を生成中..."
-              />
-              <Button
-                type="button"
-                variant="destructive"
-                size="lg"
-                onClick={onAbort}
-                className="h-12 shrink-0 rounded-full px-5"
-              >
-                <Square className="size-3 fill-current" aria-hidden="true" />
-                中断
-              </Button>
-            </div>
+            <ChatInputBar placeholder="AIが応答を生成中..." onAbort={onAbort} />
           ) : (
             <>
               <p className="text-xs font-medium text-muted-foreground">
