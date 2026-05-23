@@ -1,6 +1,8 @@
 "use client";
 
+import { BookOpen } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
 import type { Scenario } from "@/data/scenarios";
 import type { Message, Status } from "@/stores/useScenario";
 import { ChatInputBar } from "./ChatInputBar";
@@ -14,6 +16,7 @@ type Props = {
   aiThinking: boolean;
   onSelect: (scenario: Scenario) => void;
   onAbort: () => void;
+  onShowExplanation: () => void;
   className?: string;
 };
 
@@ -23,6 +26,7 @@ export function ChatPanel({
   aiThinking,
   onSelect,
   onAbort,
+  onShowExplanation,
   className,
 }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -51,9 +55,11 @@ export function ChatPanel({
           messages={messages}
           aiThinking={aiThinking}
           running={running}
+          completed={status === "completed"}
           scrollRef={scrollRef}
           onSelect={onSelect}
           onAbort={onAbort}
+          onShowExplanation={onShowExplanation}
         />
       ) : (
         <CenteredLayout onSelect={onSelect} />
@@ -93,16 +99,20 @@ function ActiveLayout({
   messages,
   aiThinking,
   running,
+  completed,
   scrollRef,
   onSelect,
   onAbort,
+  onShowExplanation,
 }: {
   messages: Message[];
   aiThinking: boolean;
   running: boolean;
+  completed: boolean;
   scrollRef: React.RefObject<HTMLDivElement | null>;
   onSelect: (scenario: Scenario) => void;
   onAbort: () => void;
+  onShowExplanation: () => void;
 }) {
   return (
     <>
@@ -112,6 +122,18 @@ function ActiveLayout({
             <ChatMessage key={m.id} message={m} />
           ))}
           {aiThinking && <ThinkingMessage />}
+          {completed && (
+            <div className="animate-in fade-in-0 slide-in-from-bottom-1 duration-300 pl-12">
+              <Button
+                size="lg"
+                onClick={onShowExplanation}
+                className="rounded-full bg-linear-to-r from-sky-500 via-indigo-500 to-violet-500 px-5 text-white shadow-md shadow-indigo-500/30 hover:brightness-110"
+              >
+                <BookOpen aria-hidden="true" />
+                解説を表示
+              </Button>
+            </div>
+          )}
         </div>
       </div>
       <div className="border-t border-border/60 bg-background/70 p-4 backdrop-blur md:p-5">

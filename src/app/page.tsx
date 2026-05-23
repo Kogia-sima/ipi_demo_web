@@ -16,6 +16,7 @@ export default function Home() {
     state,
     startScenario,
     abortScenario,
+    openExplanation,
     closeExplanation,
     openDisclaimer,
     acceptDisclaimer,
@@ -44,6 +45,7 @@ export default function Home() {
             aiThinking={state.aiThinking}
             onSelect={handleSelect}
             onAbort={abortScenario}
+            onShowExplanation={openExplanation}
             className={mobileTab === "chat" ? "" : "hidden md:flex"}
           />
           <LogPanel

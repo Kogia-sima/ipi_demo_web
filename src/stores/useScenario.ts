@@ -48,6 +48,7 @@ type Action =
   | { type: "THINKING"; on: boolean }
   | { type: "ABORT" }
   | { type: "COMPLETE" }
+  | { type: "OPEN_EXPLANATION" }
   | { type: "CLOSE_EXPLANATION" }
   | { type: "OPEN_DISCLAIMER" }
   | { type: "CLOSE_DISCLAIMER" }
@@ -112,7 +113,11 @@ function reducer(state: State, action: Action): State {
         attackActive: false,
         aiThinking: false,
         completedScenarioId: state.currentScenarioId,
-        showExplanation: state.currentScenarioId !== null,
+      };
+    case "OPEN_EXPLANATION":
+      return {
+        ...state,
+        showExplanation: state.completedScenarioId !== null,
       };
     case "CLOSE_EXPLANATION":
       return { ...state, showExplanation: false };
@@ -210,6 +215,10 @@ export function useScenario() {
     dispatch({ type: "ABORT" });
   }, []);
 
+  const openExplanation = useCallback(() => {
+    dispatch({ type: "OPEN_EXPLANATION" });
+  }, []);
+
   const closeExplanation = useCallback(() => {
     dispatch({ type: "CLOSE_EXPLANATION" });
   }, []);
@@ -230,6 +239,7 @@ export function useScenario() {
     state,
     startScenario,
     abortScenario,
+    openExplanation,
     closeExplanation,
     openDisclaimer,
     acceptDisclaimer,
