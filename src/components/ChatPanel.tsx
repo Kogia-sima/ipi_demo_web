@@ -40,7 +40,7 @@ export function ChatPanel({
   return (
     <section
       className={
-        "flex h-full min-h-0 flex-col border-border bg-background md:border-r " +
+        "flex h-full min-h-0 flex-col border-border/60 md:border-r " +
         (className ?? "")
       }
       aria-label="チャット"
@@ -66,18 +66,23 @@ function CenteredLayout({
   onSelect: (scenario: Scenario) => void;
 }) {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center gap-6 px-4 py-8 md:px-6">
-      <div className="max-w-md space-y-2 text-center">
-        <h2 className="font-heading text-2xl font-semibold text-foreground">
-          AIに話しかけてみましょう
+    <div className="flex flex-1 flex-col items-center justify-center gap-8 px-4 py-10 md:px-6">
+      <div className="max-w-xl space-y-3 text-center">
+        <h2 className="font-heading text-4xl font-medium tracking-tight md:text-5xl">
+          <span className="bg-linear-to-r from-sky-500 via-indigo-500 to-violet-500 bg-clip-text text-transparent">
+            こんにちは
+          </span>
         </h2>
+        <p className="font-heading text-xl font-medium tracking-tight text-foreground/90 md:text-2xl">
+          AIに話しかけてみましょう
+        </p>
         <p className="text-sm leading-relaxed text-muted-foreground">
           下のサンプルプロンプトから1つを選ぶと、AIが応答する様子と、その裏側で起きている
           「間接プロンプトインジェクション」を疑似的に体験できます。
         </p>
       </div>
-      <ChatInputBar className="max-w-md" />
-      <SamplePromptList onSelect={onSelect} className="max-w-md" />
+      <ChatInputBar className="max-w-xl" />
+      <SamplePromptList onSelect={onSelect} className="max-w-xl" />
     </div>
   );
 }
@@ -97,24 +102,27 @@ function ActiveLayout({
 }) {
   return (
     <>
-      <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 md:px-6">
-        <div className="mx-auto flex max-w-2xl flex-col gap-4">
+      <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-6 md:px-6">
+        <div className="mx-auto flex max-w-2xl flex-col gap-5">
           {messages.map((m) => (
             <ChatMessage key={m.id} message={m} />
           ))}
         </div>
       </div>
-      <div className="border-t border-border bg-background/95 p-3 md:p-4">
-        <div className="mx-auto flex w-full max-w-2xl flex-col gap-2">
+      <div className="border-t border-border/60 bg-background/70 p-4 backdrop-blur md:p-5">
+        <div className="mx-auto flex w-full max-w-2xl flex-col gap-3">
           {running ? (
             <div className="flex items-center gap-2">
-              <ChatInputBar className="flex-1" />
+              <ChatInputBar
+                className="flex-1"
+                placeholder="AIが応答を生成中..."
+              />
               <Button
                 type="button"
                 variant="destructive"
                 size="lg"
                 onClick={onAbort}
-                className="shrink-0"
+                className="h-12 shrink-0 rounded-full px-5"
               >
                 <Square className="size-3 fill-current" aria-hidden="true" />
                 中断
@@ -122,7 +130,7 @@ function ActiveLayout({
             </div>
           ) : (
             <>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs font-medium text-muted-foreground">
                 別のシナリオを試すには、下からプロンプトを選択してください。
               </p>
               <SamplePromptList onSelect={onSelect} />

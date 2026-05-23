@@ -6,26 +6,26 @@ type Props = {
 
 export function Footer({ onShowDisclaimer }: Props) {
   return (
-    <footer className="flex flex-col items-center justify-between gap-2 border-t border-border bg-muted/30 px-4 py-3 text-xs text-muted-foreground md:flex-row md:px-6">
-      <p>
+    <footer className="flex flex-col items-center justify-between gap-2 border-t border-border/60 bg-background/70 px-5 py-3 text-[11px] text-muted-foreground backdrop-blur md:flex-row md:px-8">
+      <p className="leading-relaxed">
         本サイトは教育目的のシミュレーションです。実在のAIやサービスとは関係ありません。
       </p>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         <button
           type="button"
           onClick={onShowDisclaimer}
-          className="underline-offset-4 hover:text-foreground hover:underline"
+          className="font-medium underline-offset-4 transition-colors hover:text-foreground hover:underline"
         >
           免責事項
         </button>
-        <span aria-hidden="true">·</span>
         <a
           href="https://github.com/Kogia-sima/ipi_demo_web"
           target="_blank"
           rel="noreferrer noopener"
-          className="underline-offset-4 hover:text-foreground hover:underline"
+          className="inline-flex items-center gap-1.5 font-medium underline-offset-4 transition-colors hover:text-foreground"
+          aria-label="GitHub リポジトリ"
         >
-          GitHub
+          <span>GitHub</span>
         </a>
       </div>
     </footer>
