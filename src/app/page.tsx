@@ -41,6 +41,7 @@ export default function Home() {
           <ChatPanel
             status={state.status}
             messages={state.messages}
+            aiThinking={state.aiThinking}
             onSelect={handleSelect}
             onAbort={abortScenario}
             className={mobileTab === "chat" ? "" : "hidden md:flex"}

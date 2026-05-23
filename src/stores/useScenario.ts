@@ -33,6 +33,7 @@ type State = {
   messages: Message[];
   logs: LogEntry[];
   attackActive: boolean;
+  aiThinking: boolean;
   showDisclaimer: boolean;
   showExplanation: boolean;
   completedScenarioId: ScenarioId | null;
@@ -44,6 +45,7 @@ type Action =
   | { type: "STOP_TYPING"; id: string }
   | { type: "APPEND_LOG"; entry: LogEntry }
   | { type: "ATTACK"; active: boolean }
+  | { type: "THINKING"; on: boolean }
   | { type: "ABORT" }
   | { type: "COMPLETE" }
   | { type: "CLOSE_EXPLANATION" }
@@ -57,6 +59,7 @@ const initialState: State = {
   messages: [],
   logs: [],
   attackActive: false,
+  aiThinking: false,
   showDisclaimer: false,
   showExplanation: false,
   completedScenarioId: null,
@@ -72,6 +75,7 @@ function reducer(state: State, action: Action): State {
         messages: [],
         logs: [],
         attackActive: false,
+        aiThinking: false,
         showExplanation: false,
         completedScenarioId: null,
       };
@@ -88,6 +92,8 @@ function reducer(state: State, action: Action): State {
       return { ...state, logs: [...state.logs, action.entry] };
     case "ATTACK":
       return { ...state, attackActive: action.active };
+    case "THINKING":
+      return { ...state, aiThinking: action.on };
     case "ABORT":
       return {
         ...state,
@@ -96,6 +102,7 @@ function reducer(state: State, action: Action): State {
         messages: [],
         logs: [],
         attackActive: false,
+        aiThinking: false,
         completedScenarioId: null,
       };
     case "COMPLETE":
@@ -103,6 +110,7 @@ function reducer(state: State, action: Action): State {
         ...state,
         status: "completed",
         attackActive: false,
+        aiThinking: false,
         completedScenarioId: state.currentScenarioId,
         showExplanation: state.currentScenarioId !== null,
       };
@@ -155,8 +163,10 @@ export function useScenario() {
           type: "APPEND_MESSAGE",
           message: { id: nextMessageId(), role: "user", text },
         });
+        dispatch({ type: "THINKING", on: true });
       },
       onAiMessage: (text) => {
+        dispatch({ type: "THINKING", on: false });
         const id = nextMessageId();
         dispatch({
           type: "APPEND_MESSAGE",

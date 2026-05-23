@@ -8,10 +8,12 @@ import type { Message, Status } from "@/stores/useScenario";
 import { ChatInputBar } from "./ChatInputBar";
 import { ChatMessage } from "./ChatMessage";
 import { SamplePromptList } from "./SamplePromptList";
+import { ThinkingMessage } from "./ThinkingMessage";
 
 type Props = {
   status: Status;
   messages: Message[];
+  aiThinking: boolean;
   onSelect: (scenario: Scenario) => void;
   onAbort: () => void;
   className?: string;
@@ -20,19 +22,20 @@ type Props = {
 export function ChatPanel({
   status,
   messages,
+  aiThinking,
   onSelect,
   onAbort,
   className,
 }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: rerun scroll-to-bottom whenever messages list changes
+  // biome-ignore lint/correctness/useExhaustiveDependencies: rerun scroll-to-bottom whenever messages list or thinking state changes
   useEffect(() => {
     const el = scrollRef.current;
     if (el) {
       el.scrollTop = el.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, aiThinking]);
 
   const running = status === "running";
   const hasMessages = messages.length > 0;
@@ -48,6 +51,7 @@ export function ChatPanel({
       {hasMessages ? (
         <ActiveLayout
           messages={messages}
+          aiThinking={aiThinking}
           running={running}
           scrollRef={scrollRef}
           onSelect={onSelect}
@@ -89,12 +93,14 @@ function CenteredLayout({
 
 function ActiveLayout({
   messages,
+  aiThinking,
   running,
   scrollRef,
   onSelect,
   onAbort,
 }: {
   messages: Message[];
+  aiThinking: boolean;
   running: boolean;
   scrollRef: React.RefObject<HTMLDivElement | null>;
   onSelect: (scenario: Scenario) => void;
@@ -107,6 +113,7 @@ function ActiveLayout({
           {messages.map((m) => (
             <ChatMessage key={m.id} message={m} />
           ))}
+          {aiThinking && <ThinkingMessage />}
         </div>
       </div>
       <div className="border-t border-border/60 bg-background/70 p-4 backdrop-blur md:p-5">
