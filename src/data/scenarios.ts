@@ -16,6 +16,8 @@ export type ScenarioEvent =
 
 export type MapPoint = { x: number; y: number; label: string };
 
+export type ExfilItem = { label: string; value: string };
+
 export type Scenario = {
   id: 1 | 2 | 3;
   title: string;
@@ -25,6 +27,7 @@ export type Scenario = {
   description: string;
   countermeasures: string[];
   target: MapPoint;
+  exfilData: ExfilItem[];
   events: ScenarioEvent[];
 };
 
@@ -48,6 +51,10 @@ const SCENARIO_1: Scenario = {
     "重要な認証情報はAIから隔離された場所に保管する",
   ],
   target: { x: 8, y: 39, label: "ヨーロッパ" },
+  exfilData: [
+    { label: "アカウント", value: "user@example.com" },
+    { label: "パスワード", value: "b8!qZN9j1" },
+  ],
   events: [
     {
       at: 0,
@@ -138,6 +145,10 @@ const SCENARIO_2: Scenario = {
     "AIの権限を最小限に保つ",
   ],
   target: { x: 41, y: 63, label: "東南アジア" },
+  exfilData: [
+    { label: "位置情報", value: "35.689°N, 139.691°E" },
+    { label: "行動履歴", value: "渋谷駅 12:30, 新宿駅 18:15" },
+  ],
   events: [
     { at: 0, kind: "user-msg", text: "明日の天気を教えて" },
     {
@@ -225,6 +236,11 @@ const SCENARIO_3: Scenario = {
     "機密ファイルへのアクセス権限を慎重に管理する",
   ],
   target: { x: 87, y: 89, label: "南米" },
+  exfilData: [
+    { label: "機密ファイル", value: "Q4財務報告.xlsx" },
+    { label: "", value: "顧客リスト.csv" },
+    { label: "", value: "新製品仕様書.pdf" },
+  ],
   events: [
     { at: 0, kind: "user-msg", text: "今日の会議資料を作成して" },
     {
