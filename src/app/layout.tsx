@@ -13,12 +13,40 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://ipi-demo-web.vercel.app/";
+const siteTitle = "間接プロンプトインジェクション体験デモ";
+const siteDescription =
+  "AIエージェントを狙う「間接プロンプトインジェクション」を、安全に体験できる教育用Webサイト。";
+const ogImage = "/logo.png";
+
 export const metadata: Metadata = {
-  title: "間接プロンプトインジェクション体験デモ",
-  description:
-    "AIエージェントを狙う「間接プロンプトインジェクション」を、安全に体験できる教育用Webサイト。",
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
   icons: {
     icon: "/favicon.ico",
+  },
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    siteName: siteTitle,
+    title: siteTitle,
+    description: siteDescription,
+    locale: "ja_JP",
+    images: [
+      {
+        url: ogImage,
+        width: 1200,
+        height: 630,
+        alt: siteTitle,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: [ogImage],
   },
 };
 
