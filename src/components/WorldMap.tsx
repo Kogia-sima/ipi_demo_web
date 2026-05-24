@@ -207,8 +207,8 @@ function Callout({
           <dd className="font-medium whitespace-nowrap text-rose-200">
             {target.label}
           </dd>
-          {items.map((item, i) => (
-            <Fragment key={`${item.label}-${item.value}-${i}`}>
+          {items.map((item) => (
+            <Fragment key={`${item.label}-${item.value}`}>
               <dt className="whitespace-nowrap text-zinc-400">{item.label}</dt>
               <dd className="font-mono whitespace-nowrap text-zinc-100">
                 {item.value}
