@@ -25,6 +25,7 @@ export function setCookie(
     `${name}=${encodeURIComponent(value)}`,
     "Path=/",
     `SameSite=${options.sameSite ?? "Lax"}`,
+    "Secure",
   ];
   if (options.maxAgeSeconds !== undefined) {
     parts.push(`Max-Age=${options.maxAgeSeconds}`);

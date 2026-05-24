@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "Next.js Security Scan": {
+      "source": "sugarforever/01coder-agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/nextjs-security-scan/SKILL.md",
+      "computedHash": "67d4666fa9b1e4674a59f27064a9daff7584282522ca04e0112b5e0293cff1ed"
+    }
+  }
+}
