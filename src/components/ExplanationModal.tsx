@@ -35,13 +35,13 @@ export function ExplanationModal({ open, scenario, onClose }: Props) {
               </DialogTitle>
             </DialogHeader>
             <div className="flex-1 space-y-6 overflow-y-auto px-6 py-5">
-              <div className="overflow-hidden rounded-xl border border-border/60 bg-muted/40">
+              <div className="overflow-x-auto overflow-y-hidden rounded-xl border border-border/60 bg-muted/40 sm:overflow-hidden">
                 <Image
                   src={scenario.illustration}
                   alt={`${scenario.badge}の攻撃イメージ`}
                   width={800}
                   height={450}
-                  className="h-auto w-full"
+                  className="h-auto w-150 max-w-none sm:w-full"
                 />
               </div>
               <div>
