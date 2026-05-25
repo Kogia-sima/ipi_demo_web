@@ -26,7 +26,7 @@ export function ExplanationModal({ open, scenario, onClose }: Props) {
         if (!next) onClose();
       }}
     >
-      <DialogContent className="max-w-2xl p-0">
+      <DialogContent className="max-w-3xl p-0">
         {scenario && (
           <div className="flex max-h-[85vh] flex-col overflow-hidden">
             <DialogHeader className="border-b border-border/60 bg-linear-to-br from-indigo-50 via-white to-violet-50 px-6 py-5">
