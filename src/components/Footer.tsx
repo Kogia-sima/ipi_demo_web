@@ -7,7 +7,7 @@ type Props = {
 export function Footer({ onShowDisclaimer }: Props) {
   return (
     <footer className="flex flex-col items-center justify-between gap-2 border-t border-border/60 bg-background/70 px-5 py-3 text-[11px] text-muted-foreground backdrop-blur md:flex-row md:px-8">
-      <p className="leading-relaxed">
+      <p className="hidden leading-relaxed md:block">
         本サイトは教育目的のシミュレーションです。実在のサービスとは関係ありません。
       </p>
       <div className="flex items-center gap-4">

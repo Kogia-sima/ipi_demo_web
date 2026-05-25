@@ -11,7 +11,7 @@ export function Header() {
           <span className="font-heading text-[15px] font-semibold tracking-tight text-foreground">
             間接プロンプトインジェクション体験デモ
           </span>
-          <span className="text-[11px] font-medium tracking-wide text-muted-foreground">
+          <span className="hidden text-[11px] font-medium tracking-wide text-muted-foreground md:inline">
             Indirect Prompt Injection · Educational Simulation
           </span>
         </div>

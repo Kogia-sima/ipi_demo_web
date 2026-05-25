@@ -61,7 +61,7 @@ export function DisclaimerModal({ open, onAccept }: Props) {
             />
           </div>
           <div className="flex items-center justify-between gap-3 px-7 pb-4">
-            <p className="text-[11px] leading-relaxed text-muted-foreground">
+            <p className="text-[11px] leading-relaxed text-muted-foreground opacity-0 sm:opacity-100">
               「理解しました」を押すと、上記内容に同意したものとして体験を開始します。
             </p>
             <Button

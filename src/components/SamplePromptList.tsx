@@ -24,7 +24,7 @@ type Props = {
 
 export function SamplePromptList({ disabled, onSelect, className }: Props) {
   return (
-    <div className={cn("flex w-full flex-col gap-2.5", className)}>
+    <div className={cn("flex w-full flex-col gap-2 md:gap-2.5", className)}>
       {SCENARIO_LIST.map((scenario) => {
         const Icon = SCENARIO_ICONS[scenario.id];
         const accent = SCENARIO_ACCENTS[scenario.id];
@@ -34,19 +34,19 @@ export function SamplePromptList({ disabled, onSelect, className }: Props) {
             type="button"
             disabled={disabled}
             onClick={() => onSelect(scenario)}
-            className="group relative flex items-center gap-3 rounded-2xl border border-border/70 bg-card px-4 py-3.5 text-left shadow-sm shadow-indigo-500/[0.03] transition-all duration-200 hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-md hover:shadow-indigo-500/10 focus-visible:border-indigo-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/30 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:-translate-y-0 disabled:hover:shadow-sm"
+            className="group relative flex items-center gap-2.5 rounded-xl border border-border/70 bg-card px-3 py-2 text-left shadow-sm shadow-indigo-500/[0.03] transition-all duration-200 hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-md hover:shadow-indigo-500/10 focus-visible:border-indigo-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/30 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:-translate-y-0 disabled:hover:shadow-sm md:gap-3 md:rounded-2xl md:px-4 md:py-3.5"
           >
             <span
               className={cn(
-                "flex size-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ring-1 transition-transform group-hover:scale-105",
+                "flex size-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ring-1 transition-transform group-hover:scale-105 md:size-10 md:rounded-xl",
                 accent,
               )}
               aria-hidden="true"
             >
-              <Icon className="size-5" />
+              <Icon className="size-4 md:size-5" />
             </span>
             <div className="flex min-w-0 flex-1 flex-col">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+              <span className="hidden text-[11px] font-semibold uppercase tracking-wider text-muted-foreground md:block">
                 {scenario.badge}
               </span>
               <span className="truncate text-sm font-medium text-foreground">

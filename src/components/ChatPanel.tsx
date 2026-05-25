@@ -74,7 +74,7 @@ function CenteredLayout({
   onSelect: (scenario: Scenario) => void;
 }) {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center gap-8 px-4 py-10 md:px-6">
+    <div className="flex flex-1 flex-col items-center justify-start gap-8 overflow-y-auto px-4 py-10 md:justify-center md:px-6">
       <div className="max-w-xl space-y-3 text-center">
         <h2 className="font-heading text-4xl font-medium tracking-tight md:text-5xl">
           <span className="bg-linear-to-r from-sky-500 via-indigo-500 to-violet-500 bg-clip-text text-transparent">
@@ -143,7 +143,7 @@ function ActiveLayout({
           ) : (
             <>
               <p className="text-xs font-medium text-muted-foreground">
-                別のシナリオを試すには、下からプロンプトを選択してください。
+                別のシナリオを試しますか？
               </p>
               <SamplePromptList onSelect={onSelect} />
             </>
